@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
                 fwrite(opus_buf, sizeof(uint8_t), opus_buf_len, fp);
                 decode_offset += AUDIO_SAMPLERATE / AUDIO_FPS * sizeof(opus_int16);
 
-                if (decode_offset >= read_size)
+                if (decode_offset + AUDIO_SAMPLERATE / AUDIO_FPS * sizeof(opus_int16) > read_size)
                 {
                     break;
                 }
@@ -296,7 +296,7 @@ int main(int argc, char *argv[])
                 fwrite(opus_buf, sizeof(uint8_t), opus_buf_len, fp);
                 encode_offset += AUDIO_SAMPLERATE / AUDIO_FPS * sizeof(opus_int16);
 
-                if (encode_offset >= pcm_len)
+                if (encode_offset + AUDIO_SAMPLERATE / AUDIO_FPS * sizeof(opus_int16) > pcm_len)
                 {
                     break;
                 }
